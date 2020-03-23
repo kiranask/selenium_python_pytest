@@ -32,7 +32,7 @@ def wdriver():
 #                 except TimeoutException:
 #                         print("Loading took too much time!-Try again")
 
-def test_1_manual_login(wdriver):
+def test_1_login(wdriver):
         wdriver.get(login_url)
 
         wdriver.find_element_by_id('ap_email').send_keys("nadafgouse510@gmail.com")
@@ -45,11 +45,11 @@ def test_1_manual_login(wdriver):
         print(current_url)
         if 'signin' in current_url:
                 time.sleep(2)
-                test_1_manual_login(wdriver)
+                test_1_login(wdriver)
         else:
                 pass
 
-def test_2_check_hits(wdriver):
+def test_2_filter_hits(wdriver):
         worker_url = 'https://worker.mturk.com'
         wdriver.get(worker_url)
         wdriver.find_element_by_xpath('/html/body/div[2]/nav[1]/div/div[1]/div/button[3]').click()
@@ -62,10 +62,11 @@ def test_2_check_hits(wdriver):
         time.sleep(1)
         wdriver.find_element_by_xpath('//*[@id="filter"]/div/div/form/div[3]/div[2]/button[2]').click()
         time.sleep(1)
+
+def test_3_tamil_mcq(wdriver):
         wdriver.find_element_by_id('mturkSearchForm').send_keys("Tamil")
         wdriver.find_element_by_id('mturkSearchForm').send_keys(Keys.ENTER)
         time.sleep(1)
-
         wdriver.find_element_by_xpath('//*[contains(text(),"How would you rate this sentence?")]').click()
-        time.sleep(100)
+
 
